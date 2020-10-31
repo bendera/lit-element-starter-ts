@@ -47,6 +47,11 @@
           "description": "The button"
         }
       ]
+    },
+    {
+      "name": "my-button",
+      "path": "./src\\my-button.ts",
+      "description": "A custom button element."
     }
   ]
 }
