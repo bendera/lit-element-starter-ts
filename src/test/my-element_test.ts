@@ -1,5 +1,5 @@
-import {MyElement} from '../my-element.js';
-import {fixture, html} from '@open-wc/testing';
+import {MyElement} from '../my-element';
+import {expect, fixture, html} from '@open-wc/testing';
 
 const assert = chai.assert;
 
@@ -19,6 +19,8 @@ suite('my-element', () => {
       <slot></slot>
     `
     );
+
+    expect(el).shadowDom.to.equalSnapshot();
   });
 
   test('renders with a set name', async () => {
