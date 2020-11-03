@@ -3,7 +3,7 @@
   "tags": [
     {
       "name": "my-element",
-      "path": "./src\\my-element.ts",
+      "path": "./src/my-element.ts",
       "description": "An example element.",
       "attributes": [
         {
@@ -50,8 +50,25 @@
     },
     {
       "name": "my-button",
-      "path": "./src\\my-button.ts",
-      "description": "A custom button element."
+      "path": "./src/my-button.ts",
+      "description": "A custom button element.",
+      "attributes": [
+        {
+          "name": "label",
+          "description": "The label of the button",
+          "type": "string",
+          "default": "\"My button\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "label",
+          "attribute": "label",
+          "description": "The label of the button",
+          "type": "string",
+          "default": "\"My button\""
+        }
+      ]
     }
   ]
 }

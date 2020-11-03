@@ -1,11 +1,21 @@
 const relative = require('./relative-path.cjs');
 
-module.exports = function({page}) {
+module.exports = function({page, collections}) {
+  if (page.url === '/') {
+    return '';
+  }
+
+  const urlParts = page.url.split('/');
+  const baseUrl = `/${urlParts[1]}/${urlParts[2]}/`;
+
+  console.dir(page.url);
+
   return `
 <nav>
-  <a href="${relative(page.url, '/')}">Home</a>
-  <a href="${relative(page.url, '/examples/')}">Examples</a>
-  <a href="${relative(page.url, '/api/')}">API</a>
-  <a href="${relative(page.url, '/install/')}">Install</a>
+  <a href="/">Home</a>
+  <a href="${baseUrl}overview">Overview</a>
+  <a href="${baseUrl}examples">Examples</a>
+  <a href="${baseUrl}api">API</a>
+  <a href="${baseUrl}install">Install</a>
 </nav>`;
 };

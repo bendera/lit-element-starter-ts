@@ -1,6 +1,8 @@
 ---
 layout: page.11ty.cjs
 title: <my-element> ⌲ Home
+customElement: my-element
+tags: overview
 ---
 
 # &lt;my-element>
