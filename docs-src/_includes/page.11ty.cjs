@@ -2,6 +2,7 @@ const header = require('./header.11ty.cjs');
 const footer = require('./footer.11ty.cjs');
 const nav = require('./nav.11ty.cjs');
 const relative = require('./relative-path.cjs');
+const htmlspecialchars = require('./htmlspecialchars');
 
 module.exports = function(data) {
   const {title, page, content} = data;
@@ -12,12 +13,12 @@ module.exports = function(data) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
+    <title>${htmlspecialchars(title)}</title>
     <base href="/">
     <link rel="stylesheet" href="/docs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link rel="stylesheet" href="/prism-okaidia.css">
-    <script type="module" src="${relative(page.url, '/my-element.bundled.js')}"></script>
+    <script type="module" src="dist/bundled.js"></script>
   </head>
   <body>
     ${header()}

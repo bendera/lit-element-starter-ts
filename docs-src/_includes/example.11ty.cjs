@@ -1,3 +1,4 @@
+const htmlspecialchars = require('./htmlspecialchars');
 const page = require('./page.11ty.cjs');
 const relative = require('./relative-path.cjs');
 
@@ -25,7 +26,7 @@ const renderExample = ({name, content, collections, page}) => {
       : [];
 
   return `
-    <h1>Example: ${name}</h1>
+    <h1>&lt;${urlParts[2]}&gt;</h1>
     <section class="examples">
       <nav class="collection">
         <ul>
@@ -36,9 +37,8 @@ const renderExample = ({name, content, collections, page}) => {
                   .map(
                     (post) => `
                   <li class=${post.url === page.url ? 'selected' : ''}>
-                    <a href="${post.url}">${post.data.description.replace(
-                      '<',
-                      '&lt;'
+                    <a href="${post.url}">${htmlspecialchars(
+                      post.data.description
                     )}</a>
                   </li>
                 `
@@ -48,6 +48,7 @@ const renderExample = ({name, content, collections, page}) => {
         </ul>
       </nav>
       <div>
+        <h2>Example: ${name}</h2>
         ${content}
       </div>
     </section>
