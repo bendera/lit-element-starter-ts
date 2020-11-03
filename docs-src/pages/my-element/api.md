@@ -1,6 +1,6 @@
 ---
 layout: page.11ty.cjs
-title: my-element
+title: <my-element> ⌲ API
 ---
 
 # my-element

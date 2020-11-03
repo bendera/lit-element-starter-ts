@@ -1,6 +1,6 @@
 ---
 layout: page.11ty.cjs
-title: my-button
+title: <my-button> ⌲ API
 ---
 
 # my-button

@@ -17,7 +17,7 @@ const processFile = (path) => {
 
       let frontMatter = '---\n';
       frontMatter += 'layout: page.11ty.cjs\n';
-      frontMatter += `title: ${title}\n`;
+      frontMatter += `title: <${title}> ⌲ API\n`;
       frontMatter += '---\n\n';
 
       const newData = frontMatter + data;
