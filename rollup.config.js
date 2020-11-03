@@ -20,7 +20,7 @@ import replace from '@rollup/plugin-replace';
 export default {
   input: 'dist/main.js',
   output: {
-    file: 'my-element.bundled.js',
+    file: 'dist/bundled.js',
     format: 'esm',
   },
   onwarn(warning) {
