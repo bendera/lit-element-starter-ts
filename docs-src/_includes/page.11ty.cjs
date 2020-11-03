@@ -1,11 +1,10 @@
 const header = require('./header.11ty.cjs');
 const footer = require('./footer.11ty.cjs');
 const nav = require('./nav.11ty.cjs');
-const relative = require('./relative-path.cjs');
 const htmlspecialchars = require('./htmlspecialchars');
 
 module.exports = function(data) {
-  const {title, page, content} = data;
+  const {title, content} = data;
   return `
 <!doctype html>
 
@@ -14,15 +13,14 @@ module.exports = function(data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${htmlspecialchars(title)}</title>
-    <base href="/">
-    <link rel="stylesheet" href="/docs.css">
+    <link rel="stylesheet" href="${this.url('/docs.css')}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
-    <link rel="stylesheet" href="/prism-okaidia.css">
-    <script type="module" src="dist/bundled.js"></script>
+    <link rel="stylesheet" href="${this.url('/prism-okaidia.css')}">
+    <script type="module" src="${this.url('/bundled.js')}"></script>
   </head>
   <body>
     ${header()}
-    ${nav(data)}
+    ${nav(data, this)}
     <div id="main-wrapper">
       <main>
         ${content}

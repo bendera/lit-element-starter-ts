@@ -1,18 +1,19 @@
 const htmlspecialchars = require('./htmlspecialchars');
 const page = require('./page.11ty.cjs');
-const relative = require('./relative-path.cjs');
 
 /**
  * This template extends the page template and adds an examples list.
  */
 module.exports = function (data) {
-  return page({
+  const pageBound = page.bind(this);
+
+  return pageBound({
     ...data,
-    content: renderExample(data),
+    content: renderExample(data, this.url),
   });
 };
 
-const renderExample = ({name, content, collections, page}) => {
+const renderExample = ({name, content, collections, page}, prefixUrl) => {
   const urlParts = page.url.split('/');
   const baseUrl = `/${urlParts[1]}/${urlParts[2]}/`;
 
@@ -36,8 +37,8 @@ const renderExample = ({name, content, collections, page}) => {
               : filteredExamples
                   .map(
                     (post) => `
-                  <li class=${post.url === page.url ? 'selected' : ''}>
-                    <a href="${post.url}">${htmlspecialchars(
+                  <li class="${post.url === page.url ? 'selected' : ''}">
+                    <a href="${prefixUrl(post.url)}">${htmlspecialchars(
                       post.data.description
                     )}</a>
                   </li>

@@ -4,6 +4,6 @@ title: 'Docs'
 ---
 <ul>
   {%- for page in collections.overview -%}
-    <li><a href="{{ page.url }}">{{ page.data.customElement }}</a></li>
+    <li><a href="{{ page.url | url }}">{{ page.data.customElement }}</a></li>
   {%- endfor -%}
 </ul>

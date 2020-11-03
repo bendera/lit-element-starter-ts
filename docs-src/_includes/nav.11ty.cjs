@@ -1,19 +1,17 @@
-const relative = require('./relative-path.cjs');
-
-module.exports = function({page, collections}) {
+module.exports = function({page, collections, globals, eleventyConfig}, parentTemplate) {
   if (page.url === '/') {
     return '';
   }
 
   const urlParts = page.url.split('/');
-  const baseUrl = `/${urlParts[1]}/${urlParts[2]}/`;
+  const urlBase = `/${urlParts[1]}/${urlParts[2]}`;
 
   return `
 <nav>
-  <a href="/">Home</a>
-  <a href="${baseUrl}overview/">Overview</a>
-  <a href="${baseUrl}examples/">Examples</a>
-  <a href="${baseUrl}api/">API</a>
-  <a href="${baseUrl}install/">Install</a>
+  <a href="${parentTemplate.url('/')}">Home</a>
+  <a href="${parentTemplate.url(urlBase + '/overview')}">Overview</a>
+  <a href="${parentTemplate.url(urlBase + '/examples')}">Examples</a>
+  <a href="${parentTemplate.url(urlBase + '/api')}">API</a>
+  <a href="${parentTemplate.url(urlBase + '/install')}">Install</a>
 </nav>`;
 };
