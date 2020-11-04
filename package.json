@@ -13,7 +13,7 @@
     "eleventy": "eleventy --config=.eleventy.cjs",
     "eleventy:watch": "eleventy --config=.eleventy.cjs --watch",
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
-    "lint:eslint": "eslint 'src/**/*.ts'",
+    "lint:eslint": "eslint src/**/*.ts",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier src/* --write",
     "docs": "npm run docs:clean && npm run build && npm run analyze && npm run docs:gen",
