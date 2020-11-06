@@ -19,6 +19,7 @@ const processFile = (path) => {
       frontMatter += 'layout: page.11ty.cjs\n';
       frontMatter += `title: <${title}> ⌲ API\n`;
       frontMatter += '---\n\n';
+      frontMatter += '<!-- This file is auto-generated. Do not edit! -->\n\n';
 
       const newData = frontMatter + data;
 

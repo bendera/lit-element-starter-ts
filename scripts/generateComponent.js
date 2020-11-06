@@ -11,6 +11,7 @@ const stat = util.promisify(fs.stat);
 const fsOpen = util.promisify(fs.open);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
+const mkdir = util.promisify(fs.mkdir);
 
 const camelize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -33,6 +34,8 @@ const generateFile = async (templateFile, filePath, componentName) => {
     path.resolve(__dirname, templateFile),
     'utf-8'
   );
+
+  await mkdir(dirname(filePath), { recursive: true });
 
   template = template.replace(/\%tagName\%/gm, componentName);
   template = template.replace(/\%className\%/gm, kebabToPascal(componentName));
@@ -59,8 +62,11 @@ const main = async () => {
     await generateFile('./component-template.txt', `src/${componentName}.ts`, componentName);
     await generateFile('./test-template.txt', `src/test/${componentName}_test.ts`, componentName);
     await generateFile('./overview-md-template.txt', `docs-src/pages/${componentName}/overview.md`, componentName);
-    // await generateFile('./example-basic-md-template.txt', `docs-src/pages/${componentName}/examples/index.md`, componentName);
-    // await generateFile('./example-another-md-template.txt', `docs-src/pages/${componentName}/examples/another-example.md`, componentName);
+    await generateFile('./example-basic-md-template.txt', `docs-src/pages/${componentName}/examples/index.md`, componentName);
+    await generateFile('./example-another-md-template.txt', `docs-src/pages/${componentName}/examples/another-example.md`, componentName);
+    await generateFile('./api-md-template.txt', `docs-src/pages/${componentName}/api.md`, componentName);
+    await generateFile('./install-md-template.txt', `docs-src/pages/${componentName}/install.md`, componentName);
+    await generateFile('./demo-html-template.txt', `dev/${componentName}.html`, componentName);
   } catch (err) {
     console.log(err);
   }
