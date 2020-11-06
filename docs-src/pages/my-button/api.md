@@ -3,6 +3,8 @@ layout: page.11ty.cjs
 title: <my-button> ⌲ API
 ---
 
+<!-- This file is auto-generated. Do not edit! -->
+
 # my-button
 
 A custom button element.
@@ -11,4 +13,4 @@ A custom button element.
 
 | Property | Attribute | Type     | Default     | Description             |
 |----------|-----------|----------|-------------|-------------------------|
-| `label`  | `label`   | `string` | "My button" | The label of the button |
+| `label`  | `label`   | `string` | "Click me!" | The label of the button |

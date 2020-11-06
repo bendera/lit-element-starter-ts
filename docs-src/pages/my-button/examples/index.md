@@ -5,8 +5,8 @@ tags: example
 name: Basic
 description: A basic example
 ---
-<my-button label="Click here"></my-button>
+<my-button label="Hello World!"></my-button>
 
 ```html
-<my-button label="Click here"></my-button>
+<my-button label="Hello World!"></my-button>
 ```

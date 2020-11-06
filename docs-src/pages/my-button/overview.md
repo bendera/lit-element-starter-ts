@@ -8,3 +8,5 @@ tags: overview
 # my-button
 
 A custom button element.
+
+<my-button></my-button>
