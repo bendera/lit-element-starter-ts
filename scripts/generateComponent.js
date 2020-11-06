@@ -23,16 +23,14 @@ const kebabToPascal = (kebab) => {
   );
 };
 
-const generateComponentFile = async (componentName) => {
-  const componentFp = `src/${componentName}.ts`;
-
-  if (fs.existsSync(componentFp)) {
-    console.log(`${componentFp} exists, skipped`);
+const generateFile = async (templateFile, filePath, componentName) => {
+  if (fs.existsSync(filePath)) {
+    console.log(`${filePath} exists, skipped`);
     return;
   }
 
   let template = await readFile(
-    path.resolve(__dirname, './component-template.txt'),
+    path.resolve(__dirname, templateFile),
     'utf-8'
   );
 
@@ -40,32 +38,8 @@ const generateComponentFile = async (componentName) => {
   template = template.replace(/\%className\%/gm, kebabToPascal(componentName));
 
   try {
-    await writeFile(componentFp, template);
-    console.log(componentFp, 'has been created');
-  } catch (err) {
-    throw(err);
-  }
-};
-
-const generateTestFile = async (componentName) => {
-  const testFp = `src/test/${componentName}_test.ts`;
-
-  if (fs.existsSync(testFp)) {
-    console.log(`${testFp} exists, skipped`);
-    return;
-  }
-
-  let template = await readFile(
-    path.resolve(__dirname, './test-template.txt'),
-    'utf-8'
-  );
-
-  template = template.replace(/\%tagName\%/gm, componentName);
-  template = template.replace(/\%className\%/gm, kebabToPascal(componentName));
-
-  try {
-    await writeFile(testFp, template);
-    console.log(testFp, 'has been created');
+    await writeFile(filePath, template);
+    console.log(filePath, 'has been created');
   } catch (err) {
     throw(err);
   }
@@ -82,8 +56,11 @@ const main = async () => {
   console.log('Generate', `${componentName}...`);
 
   try {
-    await generateComponentFile(componentName);
-    await generateTestFile(componentName);
+    await generateFile('./component-template.txt', `src/${componentName}.ts`, componentName);
+    await generateFile('./test-template.txt', `src/test/${componentName}_test.ts`, componentName);
+    await generateFile('./overview-md-template.txt', `docs-src/pages/${componentName}/overview.md`, componentName);
+    // await generateFile('./example-basic-md-template.txt', `docs-src/pages/${componentName}/examples/index.md`, componentName);
+    // await generateFile('./example-another-md-template.txt', `docs-src/pages/${componentName}/examples/another-example.md`, componentName);
   } catch (err) {
     console.log(err);
   }
