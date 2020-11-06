@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import fs from 'fs';
 import util from 'util';
 import path, {dirname} from 'path';
@@ -7,8 +6,6 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const stat = util.promisify(fs.stat);
-const fsOpen = util.promisify(fs.open);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 const mkdir = util.promisify(fs.mkdir);
@@ -52,8 +49,8 @@ const main = async () => {
   const componentName = process.argv[2];
 
   if (!componentName) {
-    console.log(chalk.red('ERR!', 'Component name is missing'));
-    process.exit(1);
+    console.log('Usage: npm run generate <componentname>');
+    process.exit(0);
   }
 
   console.log('Generate', `${componentName}...`);
@@ -67,6 +64,9 @@ const main = async () => {
     await generateFile('./api-md-template.txt', `docs-src/pages/${componentName}/api.md`, componentName);
     await generateFile('./install-md-template.txt', `docs-src/pages/${componentName}/install.md`, componentName);
     await generateFile('./demo-html-template.txt', `dev/${componentName}.html`, componentName);
+
+    console.log('Done.');
+    console.log('Don\'t forget to import your component in the main.ts file');
   } catch (err) {
     console.log(err);
   }
