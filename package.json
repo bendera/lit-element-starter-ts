@@ -30,7 +30,9 @@
     "test:watch": "karma start karma.conf.cjs --auto-watch=true --single-run=false",
     "test:update-snapshots": "karma start karma.conf.cjs --update-snapshots",
     "test:prune-snapshots": "karma start karma.conf.cjs --prune-snapshots",
-    "checksize": "rollup -c ; cat dist/bundled.js | gzip -9 | wc -c"
+    "checksize": "rollup -c ; cat dist/bundled.js | gzip -9 | wc -c",
+    "generate": "npm run generate:clean && node scripts/generateComponent.js",
+    "generate:clean": "rimraf .tmp"
   },
   "keywords": [
     "web-components",
@@ -53,6 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "chai": "^4.2.0",
+    "chalk": "^4.1.0",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "deepmerge": "^4.2.2",
