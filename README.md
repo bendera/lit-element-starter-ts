@@ -1,4 +1,4 @@
-# LitElement Library TypeScript starter 
+# LitElement UI kit TypeScript starter 
 
 This project includes a sample component library using LitElement with TypeScript. It's based on the official [LitElement TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts). Key differences:
 
@@ -52,6 +52,12 @@ To run the dev server and open the project in a new browser tab:
 
 ```bash
 npm run serve
+```
+
+To run the dev server and watch the source file, run:
+
+```bash
+npm run start
 ```
 
 There is a development HTML file located at `/dev/index.html` that you can view at http://localhost:8000/dev/index.html.
@@ -109,6 +115,12 @@ To watch the site files, and re-build automatically, run:
 
 ```bash
 npm run docs:watch
+```
+
+To serve and watch at the same time, run:
+
+```bash
+npm run docs:start
 ```
 
 The site will usually be served at http://localhost:8000.
