@@ -20,7 +20,6 @@
     "docs:clean": "rimraf docs",
     "docs:gen": "npm run build:bundle && npm run eleventy",
     "docs:gen:watch": "npm run build:bundle && npm run eleventy:watch",
-    "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
     "docs:serve": "es-dev-server --root-dir=docs --node-resolve --watch --open",
     "docs:start": "cross-env NODE_ENV=development concurrently \"npm run docs:gen:watch\" \"npm run docs:serve\" --names \"11ty,server\"",
     "analyze": "wca analyze \"src/**/*.ts\" --outFiles docs-src/pages/{tagname}/api.md && node scripts/patchMdFiles.js",
