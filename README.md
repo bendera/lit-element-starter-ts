@@ -1,6 +1,12 @@
-# LitElement TypeScript starter 
+# LitElement Library TypeScript starter 
 
-This project includes a sample component using LitElement with TypeScript.
+This project includes a sample component library using LitElement with TypeScript. It's based on the official [LitElement TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts). Key differences:
+
+- Multiple components
+- Single script for build + serve: `npm run start`
+- Single script for build + serve the documentation: `npm run docs:start`
+- Test coverage report
+- Component generator: `npm run generate <component name>`
 
 ## Setup
 
