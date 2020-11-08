@@ -13,9 +13,7 @@ suite('my-button', () => {
     const el = await fixture(html`<my-button></my-button>`);
     assert.shadowDom.equal(
       el,
-      `
-      <button>My button</button>
-    `
+      `Click me!`
     );
 
     expect(el).shadowDom.to.equalSnapshot();
