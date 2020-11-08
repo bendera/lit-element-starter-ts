@@ -2,14 +2,18 @@ import fs from 'fs';
 import rreaddir from 'recursive-readdir';
 
 const processFile = (path) => {
+  if (!/api\.md$/g.test(path)) {
+    return;
+  }
+
   fs.readFile(path, 'utf-8', (err, data) => {
     if (err) {
       throw err;
     }
 
-    const hasFm = /[\n]*[-]{3}[\n]/g.test(data);
+    const isAlreadyPatched = /---\nlayout: page.11ty.cjs\ntitle: <[a-z0-9\-]+> ⌲ Install\n---/g.test(data);
 
-    if (!hasFm) {
+    if (!isAlreadyPatched) {
       let foundMainHeader = [];
       foundMainHeader = [...data.matchAll(/^#{1} (.*)$/gm)];
 
